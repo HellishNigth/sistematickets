@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventosRequest;
 
 class EventosController extends Controller
 {
@@ -23,7 +24,7 @@ class EventosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventosRequest $request)
     {
         $evento = new Evento();
         $evento->nombreEve = $request->nombreEve;
@@ -42,7 +43,7 @@ class EventosController extends Controller
      */
     public function show(Evento $evento)
     {
-        //
+        return $evento;
     }
 
     /**
@@ -54,7 +55,12 @@ class EventosController extends Controller
      */
     public function update(Request $request, Evento $evento)
     {
-        //
+        $evento->nombreEve = $request->nombreEve;
+        $evento->detalleEve = $request->detalleEve;
+        $evento->estado = $request->estado;
+        $evento->fechaEve = $request->fechaEve;
+        $evento->save();
+        return $evento;
     }
 
     /**
@@ -65,6 +71,6 @@ class EventosController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        //
+        $evento->delete();
     }
 }
