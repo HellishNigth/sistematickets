@@ -26,16 +26,13 @@ class ClientesController extends Controller
      */
     public function store(ClientesRequest $request)
     {
-        //dd($request->rutClie);
-        echo $request->email;
-        exit();
-        //$cliente = new Cliente();
-        //$cliente->rutClie = $request->rutClie;
-        //$cliente->nombreClie = $request->nombreClie;
-        //$cliente->apellidoClie = $request->apellidoClie;
-        //$cliente->email = $request->email;
-        //$cliente->save();
-        //return $cliente;
+        $cliente = new Cliente();
+        $cliente->rutClie = $request->rutClie;
+        $cliente->nombreClie = $request->nombreClie;
+        $cliente->apellidoClie = $request->apellidoClie;
+        $cliente->email = $request->email;
+        $cliente->save();
+        return $cliente;
     }
 
     /**
