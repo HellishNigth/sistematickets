@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement();
-            $table->string('rutClie');
-            $table->string('nombreClie',50);
-            $table->string('apellidoClie',50);
             $table->string('email',30);
+            $table->
             $table->softDeletes();
         });
     }
