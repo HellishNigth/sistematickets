@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Evento extends Model
+class Ticket extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $table = 'eventos';
-    public $timestamps = false;
 
-    public function tickets(){
-        return $this->hasMany('App\Models\Ticket');
+    public function cliente(){
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function Evento(){
+        return $this->belongsTo(Evento::class);
     }
 }

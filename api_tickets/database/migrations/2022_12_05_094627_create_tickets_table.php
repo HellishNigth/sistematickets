@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement();
-            $table->mediumInteger('numeroTicket');
+            $table->string('nombreCliente',50);
+            $table->string('rutCliente',20);
             $table->unsignedInteger('evento_id');
-            $table->unsignedInteger('cliente_id');
+            $table->string('cliente_id',1);
             $table->integer('precioTicket');
             $table->dateTime('fechaEve');
             $table->softDeletes();
 
             $table->foreign('evento_id')->references('id')->on('eventos');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('email')->on('clientes');
         });
     }
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('id')->autoIncrement();
             $table->string('nombreEve',50);
             $table->string('detalleEve',80);
+            $table->string('ubicacionEve',80);
             $table->string('estado',10);
             $table->dateTime('fechaEve');
             $table->softDeletes();
