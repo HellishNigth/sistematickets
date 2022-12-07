@@ -28,6 +28,7 @@ class ClientesController extends Controller
     {
         $cliente = new Cliente();
         $cliente->email = $request->email;
+        $cliente->rol = 'C';
         $cliente->save();
         return $cliente;
     }
