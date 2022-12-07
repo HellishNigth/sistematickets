@@ -20,4 +20,8 @@ class Evento extends Model
     public function ticketsConPivot(){
         return $this->belongsToMany(Ticket::class,'ticket_evento','ticket_id','evento_id')->withPivot('cantidadTickets','totalTickets');
     }
+
+    public function ticket_evento(){
+        return $this->hasMany(Ticket::class, 'evento_id');
+    }
 }

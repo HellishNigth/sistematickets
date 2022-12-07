@@ -25,3 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/clientes',ClientesController::class);
 Route::apiResource('/eventos',EventosController::class);
 Route::apiResource('/tickets',TicketsController::class);
+
+Route::get('/tickets/{cliente}/cliente', [TicketsController::class, 'ticketsPorCliente']);
+
+Route::get('/tickets/{ticket}/detalle', [TicketsController::class, 'detalleTickets']);

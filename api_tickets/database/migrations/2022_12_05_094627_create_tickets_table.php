@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('id')->autoIncrement();
             $table->string('nombreCliente',50);
             $table->string('rutCliente',20);
-            $table->string('cliente_id',1);
+            $table->string('cliente_id');
             $table->integer('precioTicket');
             $table->integer('cantidad');
             $table->dateTime('fechaEve');

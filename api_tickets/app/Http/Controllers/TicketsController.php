@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 use App\Http\Requests\TicketsRequest;
+use App\Models\Cliente;
 
 class TicketsController extends Controller
 {
@@ -60,6 +61,7 @@ class TicketsController extends Controller
     public function show(Ticket $ticket)
     {
         //
+        return $ticket;
     }
 
     /**
@@ -84,4 +86,16 @@ class TicketsController extends Controller
     {
         $ticket->delete();
     }
+
+    public function ticketsPorCliente(Cliente $cliente){
+
+        $ticket = Ticket::select('tickets.id', 'eventos.nombreEve')->join('ticket_evento', 'ticket_evento.ticket_id', '=', 'tickets.id')->join('eventos', 'ticket_evento.evento_id', '=', 'eventos.id')->where('cliente_id', '=', $cliente->email)->get();
+        return $ticket;
+    }
+
+    public function detalleTickets(Ticket $ticket){
+        $detalleTickets = Ticket::select('tickets.id', 'eventos.nombreEve', 'nombreCliente', 'rutCliente', 'eventos.ubicacionEve', 'eventos.detalleEve', 'eventos.fechaEve', 'ticket_evento.totalTickets', )->join('ticket_evento', 'ticket_evento.ticket_id', '=', 'tickets.id')->join('eventos', 'ticket_evento.evento_id', '=', 'eventos.id')->where('tickets.id', '=', $ticket->id)->get();
+        return $detalleTickets;
+    }
+
 }

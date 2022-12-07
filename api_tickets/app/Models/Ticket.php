@@ -18,4 +18,8 @@ class Ticket extends Model
     public function eventos(){
         return $this->belongsToMany('App\Models\Evento');
     }
+
+    public function ticket_evento(){
+        return $this->hasMany(Evento::class, 'evento_id');
+    }
 }
