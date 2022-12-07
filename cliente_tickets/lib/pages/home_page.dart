@@ -8,19 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: FutureBuilder(
-        future: this.getUserEmail(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData ||
-              snapshot.connectionState == ConnectionState.waiting) {
-            return Text('Cargando...');
-          }
-          return Text(
-            snapshot.data,
-            style: TextStyle(fontSize: 12),
-          );
-        },
-      ),
+      title: Text('HOLA'),
     );
   }
 

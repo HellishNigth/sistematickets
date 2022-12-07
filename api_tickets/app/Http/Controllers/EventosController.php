@@ -79,4 +79,10 @@ class EventosController extends Controller
     {
         $evento->delete();
     }
+
+    public function editarEstado(Request $request, Evento $evento){
+        $evento->estado = $request->estado;
+        $evento->save();
+        return $evento;
+    }
 }

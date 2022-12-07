@@ -1,13 +1,18 @@
 //SignInScreen
 
+import 'package:cliente_tickets/pages/clientes/home_cliente_page.dart';
+import 'package:cliente_tickets/providers/clientes_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import 'admin/home_admin_page.dart';
 import 'home_page.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({Key? key}) : super(key: key);
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -34,8 +39,9 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Icon(MdiIcons.ticket),
               Text(
-                "GEEKS FOR GEEKS",
+                "Tickets For Tickets",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               Padding(
@@ -94,10 +100,18 @@ class _SignInScreenState extends State<SignInScreen> {
       // Getting users credential
       UserCredential result = await auth.signInWithCredential(authCredential);
       User? user = result.user;
-
+      String? userEmail = user!.email;
       if (result != null) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        var rolUsuario = ClientesProvider().confirmarRol(userEmail!);
+
+        if (rolUsuario == 'A') {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomeAdminPage()));
+        }
+        if (rolUsuario == 'C') {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomeClientePage()));
+        }
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen
     }

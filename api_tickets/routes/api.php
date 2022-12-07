@@ -29,3 +29,7 @@ Route::apiResource('/tickets',TicketsController::class);
 Route::get('/tickets/{cliente}/cliente', [TicketsController::class, 'ticketsPorCliente']);
 
 Route::get('/tickets/{ticket}/detalle', [TicketsController::class, 'detalleTickets']);
+
+Route::put('/eventos/{evento}/estado',[EventosController::class, 'editarEstado']);
+
+Route::post('/clientes/rol/{cliente}', [ClientesController::class, 'verRol']);

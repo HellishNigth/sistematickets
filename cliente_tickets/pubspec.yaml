@@ -38,6 +38,8 @@ dependencies:
   firebase_core: ^2.3.0
   google_sign_in: ^5.4.2
   shared_preferences: ^2.0.15
+  material_design_icons_flutter: ^6.0.7096
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
