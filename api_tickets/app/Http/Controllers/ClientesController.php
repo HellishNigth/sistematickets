@@ -52,9 +52,7 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        $cliente->email = $request->email;
-        $cliente->save();
-        return $cliente;
+        //
     }
 
     /**

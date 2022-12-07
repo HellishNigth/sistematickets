@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use App\Http\Requests\TicketsRequest;
 
 class TicketsController extends Controller
 {
@@ -26,18 +27,18 @@ class TicketsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TicketsRequest $request)
     {
         $ticket = new Ticket();
         $precioTicket = 0;
         $cantidad = 0;
         $evento = Evento::findOrFail($request->evento);
-        $ticket->cantidad = $request->cantidad;
         $ticket->nombreCliente = $request->nombreCliente;
         $ticket->rutCliente = $request->rutCliente;
         $ticket->evento_id = $request->evento;
         $ticket->cliente_id = $request->cliente;
         $ticket->fechaEve = $request->fechaEve;
+        $ticket->cantidad = $request->cantidad;
         $precioTicket += $request->cantidad * $evento->precioEve;
         
         $ticket->precioTicket = $precioTicket;

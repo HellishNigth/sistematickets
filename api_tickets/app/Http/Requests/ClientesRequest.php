@@ -24,21 +24,14 @@ class ClientesRequest extends FormRequest
     public function rules()
     {
         return [
-            'rutClie'=>['unique:clientes,rutClie','required'],
-            'nombreClie'=>'required',
-            'apellidoClie'=>'required',
-            'email'=>'required'
+            'email'=>['unique:clientes,email','required']
         ];
     }
 
     public function messages(){
         return [
-            'rutClie.required'=>'El rut del comprador es necesario.',
-            'rutClie.unique'=>'El rut ya esta registrado en la base de datos.',
-            'nombreClie.required'=>'El nombre del comprador es necesario.',
-            'apellidoClie.required'=>'El apellido del comprador es necesario.',
-            'email.required'=>'El correo del comprador es necesario'
-
+            'email.required'=>'El correo del comprador es necesario.',
+            'email.unique'=>'El correo ya esta registrado en la base de datos.'
         ];
     }
 
