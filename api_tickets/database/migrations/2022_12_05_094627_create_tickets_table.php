@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('evento_id');
             $table->string('cliente_id',1);
             $table->integer('precioTicket');
+            $table->integer('cantidad');
             $table->dateTime('fechaEve');
             $table->softDeletes();
 

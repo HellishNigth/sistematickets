@@ -11,9 +11,10 @@ class Evento extends Model
     use HasFactory,SoftDeletes;
     protected $table = 'eventos';
     public $timestamps = false;
+    protected $fillable = ['cantidadTicket'];
 
     public function tickets(){
-        return $this->hasMany('App\Models\Ticket');
+        return $this->belongsToMany('App\Models\Ticket');
     }
 
     public function ticketsConPivot(){

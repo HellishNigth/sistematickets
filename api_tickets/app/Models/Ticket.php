@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ticket extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $table = 'tickets';
 
     public function cliente(){
         return $this->belongsTo(Cliente::class);
     }
 
-    public function Evento(){
-        return $this->belongsTo(Evento::class);
+    public function eventos(){
+        return $this->belongsToMany('App\Models\Evento');
     }
 }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nombreEve',50);
             $table->string('detalleEve',80);
             $table->string('ubicacionEve',80);
+            $table->integer('precioEve');
+            $table->integer('cantidadTicket');
             $table->string('estado',10);
             $table->dateTime('fechaEve');
             $table->softDeletes();

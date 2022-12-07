@@ -29,6 +29,9 @@ class EventosController extends Controller
         $evento = new Evento();
         $evento->nombreEve = $request->nombreEve;
         $evento->detalleEve = $request->detalleEve;
+        $evento->ubicacionEve = $request->ubicacionEve;
+        $evento->precioEve = $request->precioEve;
+        $evento->cantidadTicket = $request->cantidadTicket;
         $evento->estado = $request->estado;
         $evento->fechaEve = $request->fechaEve;
         $evento->save();
@@ -57,6 +60,9 @@ class EventosController extends Controller
     {
         $evento->nombreEve = $request->nombreEve;
         $evento->detalleEve = $request->detalleEve;
+        $evento->ubicacionEve = $request->ubicacionEve;
+        $evento->precioEve = $request->precioEve;
+        $evento->cantidadTicket = $request->cantidadTicket;
         $evento->estado = $request->estado;
         $evento->fechaEve = $request->fechaEve;
         $evento->save();

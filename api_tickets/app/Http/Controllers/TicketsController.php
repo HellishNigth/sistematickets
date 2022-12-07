@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\Evento;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
@@ -14,7 +15,9 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        return Ticket::all();
+        $tickets = Ticket::orderBy('fechaEve')->get();
+        $eventos = Evento::orderBy('nombreEve')->get();
+        $clientes = Cliente::all();
     }
 
     /**
@@ -25,7 +28,26 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ticket = new Ticket();
+        $precioTicket = 0;
+        $cantidad = 0;
+        $evento = Evento::findOrFail($request->evento);
+        $ticket->cantidad = $request->cantidad;
+        $ticket->nombreCliente = $request->nombreCliente;
+        $ticket->rutCliente = $request->rutCliente;
+        $ticket->evento_id = $request->evento;
+        $ticket->cliente_id = $request->cliente;
+        $ticket->fechaEve = $request->fechaEve;
+        $precioTicket += $request->cantidad * $evento->precioEve;
+        
+        $ticket->precioTicket = $precioTicket;
+        $ticket->save();
+        $venta->eventos()->attach($request->evento);
+        $venta->eventos()->sync($request->evento);
+        $evento = Evento::findOrFail($request->evento);
+        $cantidadVendida = $evento->cantidadTicket - $request->cantidad;
+        $evento->update(["cantidadTicket" => $cantidadVendida]);
+        return $ticket;
     }
 
     /**
@@ -59,6 +81,6 @@ class TicketsController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
     }
 }

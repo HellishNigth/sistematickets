@@ -27,9 +27,6 @@ class ClientesController extends Controller
     public function store(ClientesRequest $request)
     {
         $cliente = new Cliente();
-        $cliente->rutClie = $request->rutClie;
-        $cliente->nombreClie = $request->nombreClie;
-        $cliente->apellidoClie = $request->apellidoClie;
         $cliente->email = $request->email;
         $cliente->save();
         return $cliente;
@@ -55,9 +52,6 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        $cliente->rutClie = $request->rutClie;
-        $cliente->nombreClie = $request->nombreClie;
-        $cliente->apellidoClie = $request->apellidoClie;
         $cliente->email = $request->email;
         $cliente->save();
         return $cliente;
