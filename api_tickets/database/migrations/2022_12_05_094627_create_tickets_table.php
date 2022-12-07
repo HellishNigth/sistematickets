@@ -17,14 +17,12 @@ return new class extends Migration
             $table->unsignedInteger('id')->autoIncrement();
             $table->string('nombreCliente',50);
             $table->string('rutCliente',20);
-            $table->unsignedInteger('evento_id');
             $table->string('cliente_id',1);
             $table->integer('precioTicket');
             $table->integer('cantidad');
             $table->dateTime('fechaEve');
             $table->softDeletes();
 
-            $table->foreign('evento_id')->references('id')->on('eventos');
             $table->foreign('cliente_id')->references('email')->on('clientes');
         });
     }
