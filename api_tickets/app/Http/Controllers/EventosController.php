@@ -43,7 +43,7 @@ class EventosController extends Controller
      */
     public function show(Evento $evento)
     {
-        return $evento;
+        return $evento->makeVisible(['ticketsConPivot']);
     }
 
     /**
