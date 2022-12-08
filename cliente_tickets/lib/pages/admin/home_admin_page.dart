@@ -1,4 +1,7 @@
+import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
+import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeAdminPage extends StatefulWidget {
   const HomeAdminPage({Key? key}) : super(key: key);
@@ -8,8 +11,34 @@ class HomeAdminPage extends StatefulWidget {
 }
 
 class _HomeAdminPageState extends State<HomeAdminPage> {
+  int paginaSel = 0;
+  final paginas = [ListarEventosPage(), EventosAgregarPage()];
   @override
   Widget build(BuildContext context) {
-    return Text('Prueba');
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tickets For Tickets'),
+      ),
+      body: paginas[paginaSel],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: paginaSel,
+        onTap: (index) {
+          setState(() {
+            paginaSel = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(MdiIcons.cube),
+            label: 'Eventos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(MdiIcons.cube),
+            label: 'Agregar Evento',
+          )
+        ],
+      ),
+    );
   }
 }

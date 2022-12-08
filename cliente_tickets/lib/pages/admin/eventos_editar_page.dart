@@ -160,11 +160,10 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
           int precioEve = int.tryParse(precioEveCtrl.text.trim()) ?? 0;
           int cantidadEve = int.tryParse(cantidadEveCtrl.text.trim()) ?? 0;
           String estado = estadoCtrl.text.trim();
-          String fechaEve = fechaEveCtrl.text.trim();
-
+          DateTime fechaEve = DateTime.parse(fechaEveCtrl.text.trim());
           //enviar por post al api
-          await EventosProvider().editarEvento(widget.id, nombreEve, detalleEve,
-              ubicacionEve, precioEve, cantidadEve, estado, fechaEve);
+          // await EventosProvider().editarEvento(widget.id, nombreEve, detalleEve,
+          //     ubicacionEve, precioEve, cantidadEve, estado, fechaEve);
 
           //redireccionar a pagina que lista productos
           Navigator.pop(context);

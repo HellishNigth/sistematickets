@@ -1,5 +1,7 @@
 //SignInScreen
 
+import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
+import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:cliente_tickets/pages/clientes/home_cliente_page.dart';
 import 'package:cliente_tickets/providers/clientes_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -104,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
       if (result != null) {
         // Navigator.pushReplacement(
         //     context, MaterialPageRoute(builder: (context) => Text(rolUsuario)));
-        if (userEmail == 'x@gmail.com') {
+        if (userEmail == 'grupodambik@gmail.com') {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => HomeAdminPage()));
         } else {

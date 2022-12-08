@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cliente_tickets/pages/admin/eventos_editar_page.dart';
 import 'package:cliente_tickets/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,11 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Listar Eventos'),
+        title: Text(
+          'Listar Eventos',
+          style: TextStyle(color: Colors.green),
+        ),
+        backgroundColor: Colors.white,
       ),
       body: FutureBuilder(
         future: EventosProvider().getEventos(),
@@ -58,15 +64,15 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                   ),
                   onDismissed: (direction) {
                     EventosProvider()
-                        .borrarEvento(evento['id'])
+                        .borrarEvento(evento['id'].toString())
                         .then((fueBorrado) {
                       if (fueBorrado) {
-                        snapshot.data.remoteAt(index);
+                        snapshot.data.removeAt(index);
                         setState(() {});
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             duration: Duration(seconds: 3),
-                            content: Text('${evento['id']} borrado'),
+                            content: Text('Evento borrado'),
                           ),
                         );
                       } else {
@@ -80,11 +86,19 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     });
                   },
                   child: ListTile(
-                    leading: Icon(MdiIcons.stadium),
-                    title: Text(evento['id']),
+                    leading: Text(
+                      evento['nombreEve'],
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    title: Text(
+                      evento['detalleEve'],
+                      style: TextStyle(fontSize: 13),
+                    ),
                     subtitle: Text(
                       '\$' + fPrecio.format(evento['precioEve']),
                     ),
+                    trailing: Text(evento['ubicacionEve']),
                     onLongPress: () {
                       MaterialPageRoute route = MaterialPageRoute(
                         builder: (context) => EventosEditarPage(evento['id']),
