@@ -43,6 +43,15 @@ class EventosProvider {
     return json.decode(respuesta.body);
   }
 
+  Future<LinkedHashMap<String, dynamic>> getEvento(String id) async {
+    var respuesta = await http.get(Uri.parse(apiURL + '/eventos/' + id));
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return LinkedHashMap();
+    }
+  }
+
   Future<bool> borrarEvento(String id) async {
     var respuesta = await http.delete(Uri.parse(apiURL + '/eventos/' + id));
     return respuesta.statusCode == 200;
