@@ -20,9 +20,10 @@ class ClientesProvider {
     return json.decode(respuesta.body);
   }
 
-  Future<http.Response> confirmarRol(String email) async {
-    var respuesta =
-        await http.post(Uri.parse(apiURL + '/clientes/rol/' + email));
+  Future<String> confirmarRol(String email) async {
+    var respuesta = await http
+        .post(Uri.parse(apiURL + '/clientes/rol/' + email))
+        .toString();
 
     return respuesta;
   }
