@@ -20,10 +20,12 @@ class ClientesProvider {
     return json.decode(respuesta.body);
   }
 
-  Future<String> confirmarRol(String email) async {
-    var respuesta =
-        await http.post(Uri.parse(apiURL + '/clientes/rol/' + email));
-
-    return json.decode(respuesta.body);
+  Future<LinkedHashMap<String, dynamic>> confirmarRol(String email) async {
+    var respuesta = await http.get(Uri.parse(apiURL + '/clientes/rol' + email));
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return LinkedHashMap();
+    }
   }
 }
