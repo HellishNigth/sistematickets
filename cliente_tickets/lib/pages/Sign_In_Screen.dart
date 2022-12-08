@@ -104,9 +104,11 @@ class _SignInScreenState extends State<SignInScreen> {
       if (result != null) {
         var rolUsuario = ClientesProvider().confirmarRol(userEmail!);
 
-        String? prubea = rolUsuario.toString();
+        // String? prubea = rolUsuario.toString();
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Text(prubea)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Text(rolUsuario.toString())));
         // if (rolUsuario == 'A') {
         //   Navigator.pushReplacement(context,
         //       MaterialPageRoute(builder: (context) => HomeAdminPage()));
