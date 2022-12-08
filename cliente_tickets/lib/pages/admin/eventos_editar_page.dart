@@ -165,7 +165,7 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
           // await EventosProvider().editarEvento(widget.id, nombreEve, detalleEve,
           //     ubicacionEve, precioEve, cantidadEve, estado, fechaEve);
 
-          //redireccionar a pagina que lista productos
+          // //redireccionar a pagina que lista productos
           Navigator.pop(context);
         },
       ),

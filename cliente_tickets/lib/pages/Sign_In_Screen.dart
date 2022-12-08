@@ -3,6 +3,7 @@
 import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:cliente_tickets/pages/clientes/home_cliente_page.dart';
+import 'package:cliente_tickets/pages/clientes/ver_noticias_page.dart';
 import 'package:cliente_tickets/providers/clientes_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -106,12 +107,12 @@ class _SignInScreenState extends State<SignInScreen> {
       if (result != null) {
         // Navigator.pushReplacement(
         //     context, MaterialPageRoute(builder: (context) => Text(rolUsuario)));
-        if (userEmail == 'grupodambik@gmail.com') {
+        if (userEmail == 'x') {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => HomeAdminPage()));
         } else {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => HomeClientePage()));
+              MaterialPageRoute(builder: (context) => VerNoticiasPage()));
         }
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen

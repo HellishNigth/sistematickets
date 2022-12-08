@@ -9,34 +9,33 @@ class VerNoticiasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Ver Noticias'),
-      ),
-      body:StreamBuilder(
-        stream: FirestroreService().noticias(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return ListView.separated(
-            separatorBuilder: (context, index) => Divider(),
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              var noticia = snapshot.data!.docs[index];
-              return ListTile(
-                leading: Icon(
-                  MdiIcons.cube,
-                  color: Colors.deepPurple,
-                ),
-                title: Text(noticia['tituloNoticia']),
-                subtitle: Text('Stock:${noticia['detalleNoticia'].toString()}'),
+        appBar: AppBar(
+          title: Text('Ver Noticias'),
+        ),
+        body: StreamBuilder(
+            stream: FirestroreService().noticias(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData ||
+                  snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return ListView.separated(
+                separatorBuilder: (context, index) => Divider(),
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  var noticia = snapshot.data!.docs[index];
+                  return ListTile(
+                    leading: Icon(
+                      MdiIcons.cube,
+                      color: Colors.deepPurple,
+                    ),
+                    title: Text(noticia['tituloNoticia']),
+                    subtitle: Text('Stock:${noticia['detalleNoticia']}'),
+                  );
+                },
               );
-            },
-          );
-        }
-      )
-    );
+            }));
   }
 }
