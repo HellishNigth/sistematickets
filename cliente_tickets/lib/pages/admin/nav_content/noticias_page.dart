@@ -45,7 +45,7 @@ class _NoriciasAgregarPageState extends State<NoriciasAgregarPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
-                  child: Text('Agregar Producto'),
+                  child: Text('Agregar Noticia'),
                   onPressed: () {
                     FirestroreService().agregarNoticia(
                       tituloCtrl.text.trim(),
@@ -55,31 +55,6 @@ class _NoriciasAgregarPageState extends State<NoriciasAgregarPage> {
                   },
                 ),
               ),
-              StreamBuilder(
-              stream: FirestroreService().noticias(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return ListView.separated(
-                  separatorBuilder: (context, index) => Divider(),
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    var noticia = snapshot.data!.docs[index];
-                    return ListTile(
-                      leading: Icon(
-                        MdiIcons.cube,
-                        color: Colors.deepPurple,
-                      ),
-                      title: Text(noticia['tituloNoticia']),
-                      subtitle: Text('Stock:${noticia['detalleNoticia'].toString()}'),
-                    );
-                  },
-                );
-              }
-            ),     
             ],
           ),
         ),
