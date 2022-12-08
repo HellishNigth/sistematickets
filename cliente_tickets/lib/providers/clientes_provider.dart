@@ -24,6 +24,6 @@ class ClientesProvider {
     var respuesta =
         await http.post(Uri.parse(apiURL + '/clientes/rol/' + email));
 
-    return 'A';
+    return json.decode(respuesta.body);
   }
 }

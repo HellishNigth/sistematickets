@@ -104,19 +104,16 @@ class _SignInScreenState extends State<SignInScreen> {
       if (result != null) {
         var rolUsuario = ClientesProvider().confirmarRol(userEmail!);
 
-        // String? prubea = rolUsuario.toString();
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Text(rolUsuario.toString())));
-        // if (rolUsuario == 'A') {
-        //   Navigator.pushReplacement(context,
-        //       MaterialPageRoute(builder: (context) => HomeAdminPage()));
-        // }
-        // if (rolUsuario == 'C') {
-        //   Navigator.pushReplacement(context,
-        //       MaterialPageRoute(builder: (context) => HomeClientePage()));
-        // }
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) => Text(rolUsuario)));
+        if (rolUsuario == 'A') {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomeAdminPage()));
+        }
+        if (rolUsuario == 'C') {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomeClientePage()));
+        }
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen
     }
