@@ -21,10 +21,9 @@ class ClientesProvider {
   }
 
   Future<String> confirmarRol(String email) async {
-    var respuesta = await http
-        .post(Uri.parse(apiURL + '/clientes/rol/' + email))
-        .toString();
+    var respuesta =
+        await http.post(Uri.parse(apiURL + '/clientes/rol/' + email));
 
-    return respuesta;
+    return 'A';
   }
 }
