@@ -40,7 +40,11 @@ dependencies:
   shared_preferences: ^2.0.15
   material_design_icons_flutter: ^6.0.7096
   http: ^0.13.5
+<<<<<<< HEAD
   cloud_firestore: ^4.1.0
+=======
+  intl: ^0.17.0
+>>>>>>> d3c6a265ff5bf2c4b6ba6a2fd5e100fde065429f
 
 dev_dependencies:
   flutter_test:

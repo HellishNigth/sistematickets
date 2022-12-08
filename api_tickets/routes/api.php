@@ -33,3 +33,5 @@ Route::get('/tickets/{ticket}/detalle', [TicketsController::class, 'detalleTicke
 Route::put('/eventos/{evento}/estado',[EventosController::class, 'editarEstado']);
 
 Route::get('/clientes/rol/{cliente}', [ClientesController::class, 'verRol']);
+
+//Route::post('tickets/compra/{tickets}/{evento}' [TicketsController::class, 'interseccion']);
