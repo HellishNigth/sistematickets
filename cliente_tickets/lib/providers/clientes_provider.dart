@@ -24,12 +24,12 @@ class ClientesProvider {
     var respuesta =
         await http.post(Uri.parse(apiURL + '/clientes/rol/' + email));
 
-    if (respuesta.toString() == 'C') {
-      var tipo = 'C';
-      return tipo;
+    if (respuesta == 'C') {
+      // var tipo = 'C';
+      return 'C';
     } else {
-      var tipo = 'A';
-      return tipo;
+      // var tipo = 'A';
+      return 'A';
     }
   }
 }
