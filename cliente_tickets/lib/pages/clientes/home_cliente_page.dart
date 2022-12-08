@@ -12,7 +12,7 @@ class HomeClientePage extends StatefulWidget {
 
 class _HomeClientePageState extends State<HomeClientePage> {
   int paginaSel = 0;
-  final paginas = [MiTicketsPage(), EventosClientesPage()];
+  final paginas = [EventosClientesPage(), MiTicketsPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,9 +9,6 @@ class EventosClientesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Listar Eventos'),
-      ),
       body: FutureBuilder(
         future: EventosProvider().getEventos(),
         builder: (context, AsyncSnapshot snapshot) {
