@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cliente_tickets/pages/admin/estado_editar_page.dart';
 import 'package:cliente_tickets/pages/admin/eventos_editar_page.dart';
 import 'package:cliente_tickets/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
@@ -43,47 +44,75 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
               var evento = snapshot.data[index];
               return Dismissible(
                   key: ObjectKey(evento),
-                  direction: DismissDirection.endToStart,
                   background: Container(
-                    color: Colors.red,
+                    color: Colors.purple,
                     alignment: Alignment.centerRight,
+                    padding: EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(MdiIcons.noteEdit, color: Colors.white),
+                        Text(
+                          'Editar Estado',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  secondaryBackground: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerLeft,
                     padding: EdgeInsets.only(right: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Icon(MdiIcons.trashCan, color: Colors.white),
                         Text(
-                          'Borrar',
+                          'Borrar Evento',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                   ),
-                  onDismissed: (direction) {
-                    EventosProvider()
-                        .borrarEvento(evento['id'].toString())
-                        .then((fueBorrado) {
-                      if (fueBorrado) {
-                        snapshot.data.removeAt(index);
+                  // direction: DismissDirection.endToStart,
+                  onDismissed: (DismissDirection direction) {
+                    if (direction == DismissDirection.endToStart) {
+                      EventosProvider()
+                          .borrarEvento(evento['id'].toString())
+                          .then((fueBorrado) {
+                        if (fueBorrado) {
+                          snapshot.data.removeAt(index);
+                          setState(() {});
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              duration: Duration(seconds: 3),
+                              content: Text('Evento borrado'),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              duration: Duration(seconds: 3),
+                              content: Text('No se pudo borrar'),
+                            ),
+                          );
+                        }
+                      });
+                    } else {
+                      MaterialPageRoute route = MaterialPageRoute(
+                        builder: (context) =>
+                            EstadoEditarPage(evento['id'].toString()),
+                      );
+                      Navigator.push(context, route).then((valor) {
                         setState(() {});
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            duration: Duration(seconds: 3),
-                            content: Text('Evento borrado'),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            duration: Duration(seconds: 3),
-                            content: Text('No se pudo borrar'),
-                          ),
-                        );
-                      }
-                    });
+                      });
+                    }
                   },
                   child: ListTile(
                     leading: Text(
@@ -101,7 +130,8 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     trailing: Text(evento['ubicacionEve']),
                     onLongPress: () {
                       MaterialPageRoute route = MaterialPageRoute(
-                        builder: (context) => EventosEditarPage(evento['id']),
+                        builder: (context) =>
+                            EventosEditarPage(evento['id'].toString()),
                       );
                       Navigator.push(context, route).then((valor) {
                         setState(() {});

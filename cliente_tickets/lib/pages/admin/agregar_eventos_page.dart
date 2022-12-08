@@ -148,6 +148,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Cantidad de tickets'),
       ),
+      keyboardType: TextInputType.number,
     );
   }
 

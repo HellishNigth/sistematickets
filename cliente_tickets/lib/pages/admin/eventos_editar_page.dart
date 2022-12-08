@@ -10,11 +10,12 @@ class EventosEditarPage extends StatefulWidget {
 }
 
 class _EditarEventosPageState extends State<EventosEditarPage> {
+  TextEditingController idCtrl = TextEditingController();
   TextEditingController nombreEveCtrl = TextEditingController();
   TextEditingController detalleEveCtrl = TextEditingController();
   TextEditingController ubicacionEveCtrl = TextEditingController();
   TextEditingController precioEveCtrl = TextEditingController();
-  TextEditingController cantidadEveCtrl = TextEditingController();
+  TextEditingController cantidadTicketCtrl = TextEditingController();
   TextEditingController estadoCtrl = TextEditingController();
   TextEditingController fechaEveCtrl = TextEditingController();
 
@@ -36,18 +37,19 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
               }
 
               var evento = snapshot.data;
+              idCtrl.text = evento['id'].toString();
               nombreEveCtrl.text = evento['nombreEve'];
               detalleEveCtrl.text = evento['detalleEve'];
               ubicacionEveCtrl.text = evento['ubicacionEve'];
               precioEveCtrl.text = evento['precioEve'].toString();
-              cantidadEveCtrl.text = evento['cantidadEve'].toString();
+              cantidadTicketCtrl.text = evento['cantidadTicket'].toString();
               estadoCtrl.text = evento['estado'];
               fechaEveCtrl.text = ['fechaEve'].toString();
               return Form(
                 child: Column(
                   children: [
                     Container(
-                      child: Text('Editando evento:' + widget.id),
+                      child: Text('Editando evento'),
                     ),
                     Expanded(
                       child: ListView(
@@ -56,7 +58,7 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
                           campoDetalleEve(),
                           campoUbicacionEve(),
                           campoPrecioEve(),
-                          campoCantidadEve(),
+                          campocantidadTicket(),
                           campoEstado(),
                           campoFechaEve(),
                           botonEditar(),
@@ -108,9 +110,9 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
     );
   }
 
-  TextFormField campoCantidadEve() {
+  TextFormField campocantidadTicket() {
     return TextFormField(
-      controller: cantidadEveCtrl,
+      controller: cantidadTicketCtrl,
       decoration: InputDecoration(
         labelText: 'Cantidad de tickets para Evento',
       ),
@@ -132,7 +134,7 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
     return TextFormField(
       controller: fechaEveCtrl,
       decoration: InputDecoration(
-        labelText: 'Ubicación Evento',
+        labelText: 'Fecha Evento',
       ),
     );
   }
@@ -154,18 +156,20 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
         ),
         onPressed: () async {
           //caputar datos del form
+          int id = int.tryParse(idCtrl.text.trim()) ?? 0;
           String nombreEve = nombreEveCtrl.text.trim();
           String detalleEve = detalleEveCtrl.text.trim();
           String ubicacionEve = ubicacionEveCtrl.text.trim();
           int precioEve = int.tryParse(precioEveCtrl.text.trim()) ?? 0;
-          int cantidadEve = int.tryParse(cantidadEveCtrl.text.trim()) ?? 0;
+          int cantidadTicket =
+              int.tryParse(cantidadTicketCtrl.text.trim()) ?? 0;
           String estado = estadoCtrl.text.trim();
           DateTime fechaEve = DateTime.parse(fechaEveCtrl.text.trim());
           //enviar por post al api
-          // await EventosProvider().editarEvento(widget.id, nombreEve, detalleEve,
-          //     ubicacionEve, precioEve, cantidadEve, estado, fechaEve);
+          await EventosProvider().editarEvento(id, nombreEve, detalleEve,
+              ubicacionEve, precioEve, cantidadTicket, estado, fechaEve);
 
-          // //redireccionar a pagina que lista productos
+          //redireccionar a pagina que lista productos
           Navigator.pop(context);
         },
       ),

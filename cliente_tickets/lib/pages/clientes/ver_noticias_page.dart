@@ -25,14 +25,14 @@ class VerNoticiasPage extends StatelessWidget {
                 separatorBuilder: (context, index) => Divider(),
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
-                  var noticia = snapshot.data!.docs[index];
+                  var noticiaId = snapshot.data!.docs[index];
                   return ListTile(
                     leading: Icon(
                       MdiIcons.cube,
                       color: Colors.deepPurple,
                     ),
-                    title: Text(noticia['tituloNoticia']),
-                    subtitle: Text('Stock:${noticia['detalleNoticia']}'),
+                    title: Text(noticiaId['tituloNoticia']),
+                    subtitle: Text('Stock:${noticiaId['detalleNoticia']}'),
                   );
                 },
               );

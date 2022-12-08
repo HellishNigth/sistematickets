@@ -20,7 +20,7 @@ class EventosProvider {
       String detalleEve,
       String ubicacionEve,
       int precioEve,
-      int cantidadEve,
+      int cantidadTicket,
       String estado,
       DateTime fechaEve) async {
     var respuesta = await http.post(
@@ -34,7 +34,7 @@ class EventosProvider {
         'detalleEve': detalleEve,
         'ubicacionEve': ubicacionEve,
         'precioEve': precioEve,
-        'cantidadEve': cantidadEve,
+        'cantidadTicket': cantidadTicket,
         'estado': estado,
         'fechaEve': fechaEve
       }),
@@ -63,7 +63,7 @@ class EventosProvider {
       String detalleEve,
       String ubicacionEve,
       int precioEve,
-      int cantidadEve,
+      int cantidadTicket,
       String estado,
       DateTime fechaEve) async {
     var respuesta = await http.put(
@@ -77,7 +77,7 @@ class EventosProvider {
         'detalleEve': detalleEve,
         'ubicacionEve': ubicacionEve,
         'precioEve': precioEve,
-        'cantidadEve': cantidadEve,
+        'cantidadTicket': cantidadTicket,
         'estado': estado,
         'fechaEve': fechaEve
       }),
