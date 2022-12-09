@@ -132,19 +132,11 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     children: const [
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
-                        flex: 2,
                         onPressed: doNothing,
                         backgroundColor: Color(0xFFFE4A49),
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
-                        label: 'Delete',
-                      ),
-                      SlidableAction(
-                        onPressed: doNothing,
-                        backgroundColor: Color(0xFF21B7CA),
-                        foregroundColor: Colors.white,
-                        icon: Icons.share,
-                        label: 'Share',
+                        label: 'Eliminar',
                       ),
                     ],
                   ),
@@ -156,17 +148,17 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                       SlidableAction(
                         flex: 2,
                         onPressed: doNothing,
-                        backgroundColor: Color(0xFFFE4A49),
+                        backgroundColor: Color.fromARGB(255, 183, 0, 255),
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
-                        label: 'Delete',
+                        label: 'Editar Evento',
                       ),
                       SlidableAction(
                         onPressed: doNothing,
                         backgroundColor: Color(0xFF0392CF),
                         foregroundColor: Colors.white,
                         icon: Icons.save,
-                        label: 'Save',
+                        label: 'Editar Estado',
                       ),
                     ],
                   ),
