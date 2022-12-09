@@ -112,7 +112,7 @@ class _SignInScreenState extends State<SignInScreen> {
               MaterialPageRoute(builder: (context) => HomeAdminPage()));
         } else {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => ListarEventosPage()));
+              MaterialPageRoute(builder: (context) => VerNoticiasPage()));
         }
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen

@@ -22,17 +22,17 @@ class VerNoticiasPage extends StatelessWidget {
                 );
               }
               return ListView.separated(
-                separatorBuilder: (context, index) => Divider(),
+                separatorBuilder: (context, prueba) => Divider(),
                 itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  var noticiaId = snapshot.data!.docs[index];
+                itemBuilder: (context, prueba) {
+                  var noticiaId = snapshot.data!.docs[prueba];
                   return ListTile(
                     leading: Icon(
                       MdiIcons.cube,
                       color: Colors.deepPurple,
                     ),
                     title: Text(noticiaId['tituloNoticia']),
-                    subtitle: Text('Stock:${noticiaId['detalleNoticia']}'),
+                    subtitle: Text(noticiaId['detalleNoticia']),
                   );
                 },
               );
