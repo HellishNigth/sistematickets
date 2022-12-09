@@ -29,13 +29,4 @@ class ClientesProvider {
   //   }
   // }
 
-  Future<String> getTicketsCliente(String email) async {
-    var respuesta = await http.get(Uri.parse(apiURL + '/clientes/' + email));
-
-    if (respuesta.statusCode == 200) {
-      return 'existe';
-    } else {
-      return '';
-    }
-  }
 }
