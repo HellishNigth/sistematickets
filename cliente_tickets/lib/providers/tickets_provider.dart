@@ -2,7 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class EventosProvider {
+class TicketsProvider {
   final apiURL = 'http://10.0.2.2:8000/api';
 
   Future<List<dynamic>> getTickets() async {
