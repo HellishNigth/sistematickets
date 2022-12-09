@@ -139,7 +139,7 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                         label: 'Editar Estado',
                       ),
                       SlidableAction(
-                        onPressed: doNothing,
+                        onPressed: Editar,
                         backgroundColor: Color.fromARGB(255, 255, 34, 203),
                         foregroundColor: Colors.white,
                         icon: Icons.save,
@@ -198,3 +198,11 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
 }
 
 void doNothing(BuildContext context) {}
+
+void Editar(BuildContext context) {
+  Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) => EventosEditarPage(context.toString())));
+  ;
+}
