@@ -154,12 +154,12 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     motion: ScrollMotion(),
                     children: [
                       SlidableAction(
-                        // An action can be bigger than the others.
+                        flex: 2,
                         onPressed: doNothing,
-                        backgroundColor: Color(0xFF7BC043),
+                        backgroundColor: Color(0xFFFE4A49),
                         foregroundColor: Colors.white,
-                        icon: Icons.archive,
-                        label: 'Archive',
+                        icon: Icons.delete,
+                        label: 'Delete',
                       ),
                       SlidableAction(
                         onPressed: doNothing,
