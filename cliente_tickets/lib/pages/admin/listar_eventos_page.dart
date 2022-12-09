@@ -8,6 +8,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+enum Actions { eliminar, editar, editarEstado }
+
 class ListarEventosPage extends StatefulWidget {
   const ListarEventosPage({key});
 
@@ -139,7 +141,7 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                         label: 'Editar Estado',
                       ),
                       SlidableAction(
-                        onPressed: Editar,
+                        onPressed: doNothing,
                         backgroundColor: Color.fromARGB(255, 255, 34, 203),
                         foregroundColor: Colors.white,
                         icon: Icons.save,
@@ -198,11 +200,3 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
 }
 
 void doNothing(BuildContext context) {}
-
-void Editar(BuildContext context) {
-  Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-          builder: (context) => EventosEditarPage(context.toString())));
-  ;
-}

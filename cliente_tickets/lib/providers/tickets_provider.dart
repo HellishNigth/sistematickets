@@ -23,7 +23,7 @@ class EventosProvider {
     int cantidad,
   ) async {
     var respuesta = await http.post(
-      Uri.parse(apiURL + '/eventos'),
+      Uri.parse(apiURL + '/tickets'),
       headers: <String, String>{
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -59,5 +59,26 @@ class EventosProvider {
     } else {
       return [];
     }
+  }
+
+  Future<LinkedHashMap<String, dynamic>> tablaPivot(
+      int evento_id, int ticket_id) async {
+    var respuesta = await http.post(
+      Uri.parse(apiURL +
+          '/tickets/' +
+          evento_id.toString() +
+          '/' +
+          ticket_id.toString()),
+      headers: <String, String>{
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'evento_id': evento_id,
+        'ticket_id': ticket_id,
+      }),
+    );
+
+    return json.decode(respuesta.body);
   }
 }
