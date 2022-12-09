@@ -107,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
       if (result != null) {
         // Navigator.pushReplacement(
         //     context, MaterialPageRoute(builder: (context) => Text(rolUsuario)));
-        if (userEmail == 'grupodambik@gmail.com') {
+        if (userEmail == 'x@gmail.com') {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => HomeAdminPage()));
         } else {
