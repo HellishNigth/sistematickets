@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('precioEve');
             $table->integer('cantidadTicket');
             $table->string('estado',10);
-            $table->dateTime('fechaEve');
+            $table->string('fechaEve');
             $table->softDeletes();
         });
     }

@@ -98,4 +98,14 @@ class TicketsController extends Controller
         return $detalleTickets;
     }
 
+    public function crearPivot(Evento $evento, Ticket $ticket){
+        $eventoId = $evento->id.value('id');
+        $eventoSelect = Evento::findOrFail($eventoId);
+        $CantidadTicket = 1;
+    
+
+        $eventoSelect->tickets()->syncWithoutDetaching([$ticket->id =>['totalTickets'=>$evento->precioEve]]);
+        
+        return $ticket->id;
+    }
 }
