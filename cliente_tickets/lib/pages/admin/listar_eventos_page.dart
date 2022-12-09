@@ -132,6 +132,7 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     children: const [
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
+                        flex: 2,
                         onPressed: doNothing,
                         backgroundColor: Color(0xFFFE4A49),
                         foregroundColor: Colors.white,
@@ -154,7 +155,6 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     children: [
                       SlidableAction(
                         // An action can be bigger than the others.
-                        flex: 2,
                         onPressed: doNothing,
                         backgroundColor: Color(0xFF7BC043),
                         foregroundColor: Colors.white,
