@@ -81,7 +81,7 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     ),
                   ),
                   // direction: DismissDirection.endToStart,
-                  onDismissed: (DismissDirection direction) {
+                  onDismissed: (direction) {
                     if (direction == DismissDirection.endToStart) {
                       EventosProvider()
                           .borrarEvento(evento['id'].toString())
@@ -110,7 +110,9 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                             EstadoEditarPage(evento['id'].toString()),
                       );
                       Navigator.push(context, route).then((valor) {
-                        setState(() {});
+                        setState(() {
+                          evento.remove(evento);
+                        });
                       });
                     }
                   },
