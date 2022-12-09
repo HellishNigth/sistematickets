@@ -11,7 +11,7 @@ class FirestroreService {
       'detalleNoticia': detalle,
     });
   }
-
+  //hola
   // Future borrarNoticia(String noticiaId) {
   //   return FirebaseFirestore.instance
   //       .collection('noticias')
