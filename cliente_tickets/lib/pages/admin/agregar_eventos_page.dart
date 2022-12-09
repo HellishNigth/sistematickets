@@ -175,6 +175,12 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Estado del Evento'),
       ),
+      validator: (valor){
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su estado';
+        }
+        return null;
+      },
     );
   }
 
@@ -195,6 +201,12 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
         label: Text('Precio del Evento'),
       ),
       keyboardType: TextInputType.number,
+      validator: (valor){
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su Precio';
+        }
+        return null;
+      },
     );
   }
 
@@ -204,6 +216,12 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Ubicación del Evento'),
       ),
+      validator: (valor){
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su Ubicacion';
+        }
+        return null;
+      },
     );
   }
 
@@ -213,6 +231,12 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Detalle de Evento'),
       ),
+      validator: (valor){
+        if (valor == null || valor.isEmpty) {
+          return 'Indique el Detalle';
+        }
+        return null;
+      },
     );
   }
 
@@ -222,6 +246,12 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Nombre del Evento'),
       ),
+      validator: (valor){
+        if (valor == null || valor.isEmpty) {
+          return 'Indique Nombre';
+        }
+        return null;
+      },
     );
   }
 }
