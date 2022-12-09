@@ -1,6 +1,7 @@
 //SignInScreen
 
 import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
+import 'package:cliente_tickets/pages/admin/agregar_noticia.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:cliente_tickets/pages/clientes/home_cliente_page.dart';
 import 'package:cliente_tickets/pages/clientes/ver_noticias_page.dart';
@@ -112,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
               MaterialPageRoute(builder: (context) => HomeAdminPage()));
         } else {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => EventosAgregarPage()));
+              MaterialPageRoute(builder: (context) => AgregarNoticiaPage()));
         }
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen

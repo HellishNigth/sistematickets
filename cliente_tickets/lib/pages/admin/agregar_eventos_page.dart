@@ -1,6 +1,8 @@
 import 'package:cliente_tickets/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
 
+import 'home_admin_page.dart';
+
 class EventosAgregarPage extends StatefulWidget {
   const EventosAgregarPage({Key? key}) : super(key: key);
 
@@ -153,7 +155,8 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
             setState(() {});
             return;
           }
-          Navigator.pop(context);
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomeAdminPage()));
         },
       ),
     );
@@ -175,7 +178,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Estado del Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su estado';
         }
@@ -201,7 +204,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
         label: Text('Precio del Evento'),
       ),
       keyboardType: TextInputType.number,
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su Precio';
         }
@@ -216,7 +219,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Ubicación del Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su Ubicacion';
         }
@@ -231,7 +234,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Detalle de Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique el Detalle';
         }
@@ -246,7 +249,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Nombre del Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique Nombre';
         }
