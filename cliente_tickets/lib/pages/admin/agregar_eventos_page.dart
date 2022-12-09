@@ -41,59 +41,61 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
         padding: const EdgeInsets.all(8.0),
         child: Form(
           key: formKey,
-          child: Stepper(
-            steps: [
-              Step(
-                title: Text('Paso 1'),
-                content: campoNombre(),
-                label: MostrarErrores(errNombre),
-              ),
-              Step(
-                title: Text('Paso 2'),
-                content: campoDetalle(),
-                label: MostrarErrores(errDetalle),
-              ),
-              Step(
-                title: Text('Paso 3'),
-                content: campoUbicacion(),
-                label: MostrarErrores(errUbicacion),
-              ),
-              Step(
-                title: Text('Paso 4'),
-                content: campoPrecio(),
-                label: MostrarErrores(errPrecio),
-              ),
-              Step(
-                title: Text('Paso 5'),
-                content: campoCantidad(),
-                label: MostrarErrores(errCantidad),
-              ),
-              Step(
-                title: Text('Paso 6'),
-                content: campoEstado(),
-                label: MostrarErrores(errEstado),
-              ),
-              Step(
-                title: Text('Paso 7'),
-                content: campoFecha(),
-                label: MostrarErrores(errFecha),
-              ),
-              Step(title: Text('Paso 8'), content: botonAgregar()),
-            ],
-            currentStep: _step,
-            onStepTapped: (index) {
-              setState(() => _step = index);
-            },
-            onStepContinue: () {
-              if (_step != 7) {
-                setState(() => _step++);
-              }
-            },
-            onStepCancel: () {
-              if (_step != 0) {
-                setState(() => _step--);
-              }
-            },
+          child: Expanded(
+            child: Stepper(
+              steps: [
+                Step(
+                  title: Text('Paso 1'),
+                  content: campoNombre(),
+                  label: MostrarErrores(errNombre),
+                ),
+                Step(
+                  title: Text('Paso 2'),
+                  content: campoDetalle(),
+                  label: MostrarErrores(errDetalle),
+                ),
+                Step(
+                  title: Text('Paso 3'),
+                  content: campoUbicacion(),
+                  label: MostrarErrores(errUbicacion),
+                ),
+                Step(
+                  title: Text('Paso 4'),
+                  content: campoPrecio(),
+                  label: MostrarErrores(errPrecio),
+                ),
+                Step(
+                  title: Text('Paso 5'),
+                  content: campoCantidad(),
+                  label: MostrarErrores(errCantidad),
+                ),
+                Step(
+                  title: Text('Paso 6'),
+                  content: campoEstado(),
+                  label: MostrarErrores(errEstado),
+                ),
+                Step(
+                  title: Text('Paso 7'),
+                  content: campoFecha(),
+                  label: MostrarErrores(errFecha),
+                ),
+                Step(title: Text('Paso 8'), content: botonAgregar()),
+              ],
+              currentStep: _step,
+              onStepTapped: (index) {
+                setState(() => _step = index);
+              },
+              onStepContinue: () {
+                if (_step != 7) {
+                  setState(() => _step++);
+                }
+              },
+              onStepCancel: () {
+                if (_step != 0) {
+                  setState(() => _step--);
+                }
+              },
+            ),
           ),
         ),
       ),
