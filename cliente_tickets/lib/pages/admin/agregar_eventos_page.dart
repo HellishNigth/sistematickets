@@ -175,7 +175,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
     return TextFormField(
       controller: detalleEveCtrl,
       decoration: InputDecoration(
-        label: Text('Detalle del Evento'),
+        label: Text('Detalle de Evento'),
       ),
     );
   }
