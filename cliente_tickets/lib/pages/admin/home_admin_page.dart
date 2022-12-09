@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: FadeInDown(child: Text('Tickets For Tickets')),
+        title: Text('Tickets For Tickets'),
       ),
       body: paginas[paginaSel],
       bottomNavigationBar: BottomNavigationBar(
