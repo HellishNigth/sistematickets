@@ -17,8 +17,19 @@ class ListarEventosPage extends StatefulWidget {
 class _ListarEventosPageState extends State<ListarEventosPage> {
   final fPrecio =
       NumberFormat.currency(decimalDigits: 0, locale: 'es-CL', symbol: '');
+
+  Offset _tapPosition = Offset.zero;
+  void _getTapPosition(TapDownDetails details) {
+    final RenderBox referenceBox = context.findRenderObject() as RenderBox;
+    setState(() {
+      _tapPosition = referenceBox.globalToLocal(details.globalPosition);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final RenderObject? overlay =
+        Overlay.of(context)?.context.findRenderObject();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -129,13 +140,24 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     ),
                     trailing: Text(evento['ubicacionEve']),
                     onLongPress: () {
-                      MaterialPageRoute route = MaterialPageRoute(
-                        builder: (context) =>
-                            EventosEditarPage(evento['id'].toString()),
+                      showMenu(
+                        items: <PopupMenuEntry>[
+                          PopupMenuItem(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.delete),
+                                Text("Delete"),
+                              ],
+                            ),
+                          )
+                        ],
+                        context: context,
+                        position: RelativeRect.fromRect(
+                            Rect.fromLTWH(
+                                _tapPosition.dx, _tapPosition.dy, 30, 30),
+                            Rect.fromLTWH(0, 0, overlay!.paintBounds.size.width,
+                                overlay.paintBounds.size.height)),
                       );
-                      Navigator.push(context, route).then((valor) {
-                        setState(() {});
-                      });
                     },
                   ));
             },
