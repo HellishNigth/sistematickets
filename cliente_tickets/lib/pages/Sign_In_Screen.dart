@@ -1,5 +1,6 @@
 //SignInScreen
 
+import 'package:animate_do/animate_do.dart';
 import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
 import 'package:cliente_tickets/pages/admin/agregar_noticia.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
@@ -70,7 +71,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       SizedBox(
                         width: 20,
                       ),
-                      Text("Sign In with Google")
+                      FadeInLeft(child: Text("Sign In with Google"))
                     ],
                   ),
 
