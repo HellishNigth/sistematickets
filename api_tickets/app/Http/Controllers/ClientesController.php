@@ -67,8 +67,4 @@ class ClientesController extends Controller
         $cliente->delete();
     }
 
-    public function verRol(Cliente $cliente){
-        $rol = $cliente->rol;
-        return $rol;
-    }
 }

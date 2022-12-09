@@ -15,7 +15,7 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-class VerNoticiasPage extends StatelessWidget {
+class VerDetalleEventosPage extends StatelessWidget {
   final FirebaseAuth auth = FirebaseAuth.instance;
   GoogleSignIn _googleSignIn = GoogleSignIn(
     // Optional clientId
@@ -29,7 +29,7 @@ class VerNoticiasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Ver Noticias'),
+          title: Text('Ver detalle evento'),
           actions: [
             PopupMenuButton(
               itemBuilder: (context) => [
@@ -58,17 +58,16 @@ class VerNoticiasPage extends StatelessWidget {
                 );
               }
               return ListView.separated(
-                separatorBuilder: (context, prueba) => Divider(),
+                separatorBuilder: (context, index) => Divider(),
                 itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, prueba) {
-                  var noticiaId = snapshot.data!.docs[prueba];
+                itemBuilder: (context, index) {
+                  var detalleId = snapshot.data!.docs[index];
                   return ListTile(
                     leading: Icon(
                       MdiIcons.cube,
                       color: Colors.deepPurple,
                     ),
-                    title: Text(noticiaId['tituloNoticia']),
-                    subtitle: Text(noticiaId['detalleNoticia']),
+                    title: Text(detalleId['detalleEve']),
                   );
                 },
               );

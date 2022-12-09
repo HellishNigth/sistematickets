@@ -104,4 +104,15 @@ class EventosProvider {
 
     return json.decode(respuesta.body);
   }
+
+  Future<List<dynamic>> getDetalleEvento(int id) async {
+    var respuesta =
+        await http.get(Uri.parse(apiURL + '/eventos/' + id.toString()));
+
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return [];
+    }
+  }
 }
