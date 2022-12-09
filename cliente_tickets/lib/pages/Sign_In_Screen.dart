@@ -1,5 +1,6 @@
 //SignInScreen
 
+import 'package:animate_do/animate_do.dart';
 import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:cliente_tickets/pages/clientes/home_cliente_page.dart';
@@ -43,9 +44,11 @@ class _SignInScreenState extends State<SignInScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(MdiIcons.ticket),
-              Text(
-                "Tickets For Tickets",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              FadeInLeft(
+                child: Text(
+                  "Tickets For Tickets",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
@@ -107,12 +110,14 @@ class _SignInScreenState extends State<SignInScreen> {
       if (result != null) {
         // Navigator.pushReplacement(
         //     context, MaterialPageRoute(builder: (context) => Text(rolUsuario)));
-        if (userEmail == 'x@gmail.com') {
+        if (userEmail == 'grupodambik@gmail.com') {
+          var respuesta = await ClientesProvider().agregarCliente(userEmail!);
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => HomeAdminPage()));
         } else {
+          var respuesta = await ClientesProvider().agregarCliente(userEmail!);
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => EventosAgregarPage()));
+              MaterialPageRoute(builder: (context) => ListarEventosPage()));
         }
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen

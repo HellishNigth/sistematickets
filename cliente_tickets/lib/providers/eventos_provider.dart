@@ -22,7 +22,7 @@ class EventosProvider {
       int precioEve,
       int cantidadTicket,
       String estado,
-      DateTime fechaEve) async {
+      String fechaEve) async {
     var respuesta = await http.post(
       Uri.parse(apiURL + '/eventos'),
       headers: <String, String>{
@@ -52,8 +52,9 @@ class EventosProvider {
     }
   }
 
-  Future<bool> borrarEvento(String id) async {
-    var respuesta = await http.delete(Uri.parse(apiURL + '/eventos/' + id));
+  Future<bool> borrarEvento(int id) async {
+    var respuesta =
+        await http.delete(Uri.parse(apiURL + '/eventos/' + id.toString()));
     return respuesta.statusCode == 200;
   }
 
@@ -65,14 +66,15 @@ class EventosProvider {
       int precioEve,
       int cantidadTicket,
       String estado,
-      DateTime fechaEve) async {
+      String fechaEve) async {
     var respuesta = await http.put(
-      Uri.parse(apiURL + '/productos/' + id.toString()),
+      Uri.parse(apiURL + '/eventos/' + id.toString()),
       headers: <String, String>{
         'Content-type': 'application/json',
         'Accept': 'application/json',
       },
       body: jsonEncode(<String, dynamic>{
+        'id': id,
         'nombreEve': nombreEve,
         'detalleEve': detalleEve,
         'ubicacionEve': ubicacionEve,
@@ -89,12 +91,13 @@ class EventosProvider {
   Future<LinkedHashMap<String, dynamic>> editarEstado(
       int id, String estado) async {
     var respuesta = await http.put(
-      Uri.parse(apiURL + '/productos/' + id.toString()),
+      Uri.parse(apiURL + '/eventos/' + id.toString() + '/estado'),
       headers: <String, String>{
         'Content-type': 'application/json',
         'Accept': 'application/json',
       },
       body: jsonEncode(<String, dynamic>{
+        'id': id,
         'estado': estado,
       }),
     );

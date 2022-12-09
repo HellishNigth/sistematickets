@@ -8,6 +8,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import 'home_admin_page.dart';
+
 enum Actions { eliminar, editar, editarEstado }
 
 class ListarEventosPage extends StatefulWidget {
@@ -45,79 +47,14 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
               var evento = snapshot.data[index];
-              // return Dismissible(
-              //     key: ObjectKey(evento),
-              //     background: Container(
-              //       color: Colors.purple,
-              //       alignment: Alignment.centerRight,
-              //       padding: EdgeInsets.only(left: 10),
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.start,
-              //         children: [
-              //           Icon(MdiIcons.noteEdit, color: Colors.white),
-              //           Text(
-              //             'Editar Estado',
-              //             style: TextStyle(
-              //                 color: Colors.white,
-              //                 fontSize: 14,
-              //                 fontWeight: FontWeight.bold),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //     secondaryBackground: Container(
-              //       color: Colors.red,
-              //       alignment: Alignment.centerLeft,
-              //       padding: EdgeInsets.only(right: 10),
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.end,
-              //         children: [
-              //           Icon(MdiIcons.trashCan, color: Colors.white),
-              //           Text(
-              //             'Borrar Evento',
-              //             style: TextStyle(
-              //                 color: Colors.white,
-              //                 fontSize: 14,
-              //                 fontWeight: FontWeight.bold),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //     // direction: DismissDirection.endToStart,
-              //     onDismissed: (DismissDirection direction) {
-              //       if (direction == DismissDirection.endToStart) {
-              //         EventosProvider()
-              //             .borrarEvento(evento['id'].toString())
-              //             .then((fueBorrado) {
-              //           if (fueBorrado) {
-              //             snapshot.data.removeAt(index);
-              //             setState(() {});
-              //             ScaffoldMessenger.of(context).showSnackBar(
-              //               SnackBar(
-              //                 duration: Duration(seconds: 3),
-              //                 content: Text('Evento borrado'),
-              //               ),
-              //             );
-              //           } else {
-              //             ScaffoldMessenger.of(context).showSnackBar(
-              //               SnackBar(
-              //                 duration: Duration(seconds: 3),
-              //                 content: Text('No se pudo borrar'),
-              //               ),
-              //             );
-              //           }
-              //         });
-              //       } else {
+
               //         MaterialPageRoute route = MaterialPageRoute(
               //           builder: (context) =>
               //               EstadoEditarPage(evento['id'].toString()),
               //         );
               //         Navigator.push(context, route).then((valor) {
               //           setState(() {});
-              //         });
-              //       }
-              //     },
-              //     child: ListTile(
+              //
               return Slidable(
                   // Specify a key if the Slidable is dismissible.
                   key: const ValueKey(0),
@@ -125,13 +62,13 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                   // The start action pane is the one at the left or the top side.
                   startActionPane: ActionPane(
                     // A motion is a widget used to control how the pane animates.
-                    motion: const ScrollMotion(),
+                    motion: ScrollMotion(),
 
                     // A pane can dismiss the Slidable.
                     dismissible: DismissiblePane(onDismissed: () {}),
 
                     // All actions are defined in the children parameter.
-                    children: const [
+                    children: [
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
                         onPressed: doNothing,
@@ -151,16 +88,31 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                   ),
 
                   // The end action pane is the one at the right or the bottom side.
-                  endActionPane: const ActionPane(
+                  endActionPane: ActionPane(
                     motion: ScrollMotion(),
                     children: [
                       SlidableAction(
-                        flex: 2,
-                        onPressed: doNothing,
-                        backgroundColor: Color.fromARGB(255, 255, 0, 0),
-                        foregroundColor: Colors.white,
-                        icon: Icons.delete,
-                        label: 'Eliminar',
+                        onPressed: (context) {
+                          confirmDialog(context, evento['nombreEve'])
+                              .then((confirma) {
+                            if (confirma) {
+                              // borrar
+                              EventosProvider()
+                                  .borrarEvento(evento['id'])
+                                  .then((fueBorrado) {
+                                if (fueBorrado) {
+                                  snapshot.data.removeAt(index);
+                                  setState(() {});
+                                  // mostrarSnackbar(
+                                  //     'Evento  ${evento['nombreEve']} borrado');
+                                }
+                              });
+                            }
+                          });
+                        },
+                        backgroundColor: Colors.red,
+                        icon: MdiIcons.trashCan,
+                        label: 'Borrar',
                       ),
                     ],
                   ),
@@ -182,6 +134,13 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                     ),
                     trailing: Text(evento['ubicacionEve']),
                     onLongPress: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  EstadoEditarPage(evento['id'].toString())));
+                    },
+                    onTap: () {
                       MaterialPageRoute route = MaterialPageRoute(
                         builder: (context) =>
                             EventosEditarPage(evento['id'].toString()),
@@ -199,4 +158,37 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
   }
 }
 
+// void mostrarSnackbar(String mensaje) {
+//   ScaffoldMessenger.of(context).showSnackBar(
+//     SnackBar(
+//       duration: Duration(seconds: 2),
+//       content: Text(mensaje),
+//     ),
+//   );
+// }
+
 void doNothing(BuildContext context) {}
+
+Future<dynamic> confirmDialog(BuildContext context, String producto) {
+  return showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text('Confirmación de borrado'),
+        content: Text('¿Confirma borrar el evento?'),
+        actions: [
+          TextButton(
+            child: Text('CANCELAR'),
+            onPressed: () => Navigator.pop(context, false),
+          ),
+          ElevatedButton(
+            child: Text('CONFIRMAR'),
+            style: ElevatedButton.styleFrom(primary: Colors.red),
+            onPressed: () => Navigator.pop(context, true),
+          ),
+        ],
+      );
+    },
+  );
+}

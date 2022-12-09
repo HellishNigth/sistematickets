@@ -1,3 +1,4 @@
+import 'package:cliente_tickets/pages/admin/home_admin_page.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
 import 'package:cliente_tickets/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class _EstadoEditarPageState extends State<EstadoEditarPage> {
 
           //redireccionar a pagina que lista productos
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => ListarEventosPage()));
+              MaterialPageRoute(builder: (context) => HomeAdminPage()));
         },
       ),
     );

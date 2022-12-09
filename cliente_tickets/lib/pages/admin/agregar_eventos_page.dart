@@ -1,3 +1,4 @@
+import 'package:cliente_tickets/pages/admin/home_admin_page.dart';
 import 'package:cliente_tickets/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -125,37 +126,45 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
           ],
         ),
         onPressed: () async {
-          String nombre = nombreEveCtrl.text.trim();
-          String detalle = detalleEveCtrl.text.trim();
-          String ubicacion = ubicacionEveCtrl.text.trim();
-          int precio = int.tryParse(precioEveCtrl.text.trim()) ?? 0;
-          int cantidad = int.tryParse(cantidadTicketCtrl.text.trim()) ?? 0;
+          String nombreEve = nombreEveCtrl.text.trim();
+          String detalleEve = detalleEveCtrl.text.trim();
+          String ubicacionEve = ubicacionEveCtrl.text.trim();
+          int precioEve = int.tryParse(precioEveCtrl.text.trim()) ?? 0;
+          int cantidadTicket =
+              int.tryParse(cantidadTicketCtrl.text.trim()) ?? 0;
           String estado = estadoCtrl.text.trim();
-          DateTime fecha = DateTime.parse(fechaEveCtrl.text.trim());
+          String fechaEve = fechaEveCtrl.text.trim();
 
           var respuesta = await EventosProvider().agregarEvento(
-              nombre, detalle, ubicacion, precio, cantidad, estado, fecha);
-          if (respuesta['messages'] != null) {
-            var errores = respuesta['errors'];
-            errNombre =
-                errores['nombreEve'] != null ? errores['nombreEve'][0] : '';
-            errDetalle =
-                errores['detalleEve'] != null ? errores['detalleEve'][0] : '';
-            errUbicacion = errores['ubicacionEve'] != null
-                ? errores['ubicacionEve'][0]
-                : '';
-            errPrecio =
-                errores['precioEve'] != null ? errores['precioEve'][0] : '';
-            errCantidad = errores['cantidadTicket'] != null
-                ? errores['cantidadTicket'][0]
-                : '';
-            errEstado = errores['estado'] != null ? errores['estado'][0] : '';
-            errFecha =
-                errores['fechaEve'] != null ? errores['fechaEve'][0] : '';
-            setState(() {});
-            return;
-          }
-          Navigator.pop(context);
+              nombreEve,
+              detalleEve,
+              ubicacionEve,
+              precioEve,
+              cantidadTicket,
+              estado,
+              fechaEve);
+          // if (respuesta['messages'] != null) {
+          //   var errores = respuesta['errors'];
+          //   errNombre =
+          //       errores['nombreEve'] != null ? errores['nombreEve'][0] : '';
+          //   errDetalle =
+          //       errores['detalleEve'] != null ? errores['detalleEve'][0] : '';
+          //   errUbicacion = errores['ubicacionEve'] != null
+          //       ? errores['ubicacionEve'][0]
+          //       : '';
+          //   errPrecio =
+          //       errores['precioEve'] != null ? errores['precioEve'][0] : '';
+          //   errCantidad = errores['cantidadTicket'] != null
+          //       ? errores['cantidadTicket'][0]
+          //       : '';
+          //   errEstado = errores['estado'] != null ? errores['estado'][0] : '';
+          //   errFecha =
+          //       errores['fechaEve'] != null ? errores['fechaEve'][0] : '';
+          //   setState(() {});
+          //   return;
+          // }
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomeAdminPage()));
         },
       ),
     );
@@ -177,7 +186,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Estado del Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su estado';
         }
@@ -203,7 +212,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
         label: Text('Precio del Evento'),
       ),
       keyboardType: TextInputType.number,
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su Precio';
         }
@@ -218,7 +227,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Ubicación del Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su Ubicacion';
         }
@@ -233,7 +242,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Detalle de Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique el Detalle';
         }
@@ -248,7 +257,7 @@ class _EventosAgregarPageState extends State<EventosAgregarPage> {
       decoration: InputDecoration(
         label: Text('Nombre del Evento'),
       ),
-      validator: (valor){
+      validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique Nombre';
         }

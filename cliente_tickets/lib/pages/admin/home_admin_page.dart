@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cliente_tickets/pages/admin/agregar_eventos_page.dart';
 import 'package:cliente_tickets/pages/admin/listar_eventos_page.dart';
+import 'package:cliente_tickets/pages/clientes/agregar_eventos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 

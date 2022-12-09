@@ -44,7 +44,7 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
               precioEveCtrl.text = evento['precioEve'].toString();
               cantidadTicketCtrl.text = evento['cantidadTicket'].toString();
               estadoCtrl.text = evento['estado'];
-              fechaEveCtrl.text = ['fechaEve'].toString();
+              fechaEveCtrl.text = evento['fechaEve'];
               return Form(
                 child: Column(
                   children: [
@@ -164,7 +164,7 @@ class _EditarEventosPageState extends State<EventosEditarPage> {
           int cantidadTicket =
               int.tryParse(cantidadTicketCtrl.text.trim()) ?? 0;
           String estado = estadoCtrl.text.trim();
-          DateTime fechaEve = DateTime.parse(fechaEveCtrl.text.trim());
+          String fechaEve = fechaEveCtrl.text.trim();
           //enviar por post al api
           await EventosProvider().editarEvento(id, nombreEve, detalleEve,
               ubicacionEve, precioEve, cantidadTicket, estado, fechaEve);
